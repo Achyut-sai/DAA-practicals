@@ -1,0 +1,9 @@
+                                                           SUMMARY:
+
+Sorting algorithms are methods used to arrange data in a particular order, either ascending or descending. Bubble sort, selection sort, and insertion sort are simple comparison-based techniques that work well for small or nearly sorted datasets but perform poorly on large inputs, each having a worst-case time complexity of O(n²). Merge sort uses a divide-and-conquer approach, splitting the array into halves, sorting them recursively, and merging them back, giving a consistent O(n log n) time complexity at the cost of extra space. Quick sort also follows divide-and-conquer, selecting a pivot element and partitioning the array around it, making it very fast in practice with an average case of O(n log n), though it can degrade to O(n²) in the worst case. Among these, merge and quick sort are generally preferred for large datasets due to their efficiency. Stability, meaning whether equal elements retain their original order, is preserved in bubble, insertion, and merge sort, but not in selection or quick sort. Choosing the right algorithm depends on factors like data size, memory constraints, and whether stability is required.
+
+
+
+                                                           CONCLUSION:
+
+Use Insertion Sort for small lists or data that is already mostly ordered.Use Quick Sort for fastest average real-world performance when additional memory is limited.Use Merge Sort when stability is required (e.g., sorting database records by multiple keys) and extra memory is available.Use Heap Sort when consistent O(n log n)performance must be guaranteed without using external space.Use Non-Comparison Sorts (like Radix/Counting) when sorting numerical values constrained within a specific, small range.
