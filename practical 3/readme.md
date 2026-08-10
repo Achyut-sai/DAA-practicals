@@ -1,0 +1,7 @@
+Summary
+
+Heapify is the core building block of heap-based data structures. Given a node in a binary tree whose left and right subtrees already satisfy the heap property, Heapify fixes any violation at the given node by pushing ("sinking") its value down to the correct position.  How it works: It compares the parent node with its left and right children. If a child is larger (for a Max-Heap) or smaller (for a Min-Heap), it swaps the parent with the largest/smallest child and recursively calls heapify on the swapped child node.  Time Complexity: O(\log n) per single call, because in the worst case, a value travels from the root down to a leaf node along the height of the tree.  Build-Heap Efficiency: While calling heapify on a single node takes O(\log n), building an entire heap from an unsorted array takes $O(n)$ time. This is because most nodes reside near the bottom levels where the tree height is short, so they require fewer swaps.  
+
+Conclusion
+
+Heapify is a fast, recursive or iterative local repair function. It guarantees that binary tree nodes maintain the heap structure in minimal steps. Without Heapify, building priority queues or performing heap-based operations would be inefficient.  
