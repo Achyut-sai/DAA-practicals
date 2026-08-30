@@ -1,0 +1,7 @@
+ SUMMARY:
+ 
+ The comparative analysis of iterative and recursive factorial algorithms demonstrates fundamental trade-offs in software design between structural clarity and memory efficiency. Both approaches share an identical time complexity of mathcal{O}(n), as each requires (n - 1) multiplication operations to compute the factorial of a given integer. However, their execution models diverge significantly in how they handle memory allocation and system resources. The iterative implementation relies on a single loop structure that updates a local state variable in-place, achieving an optimal auxiliary space complexity of mathcal{O}(1). In contrast, the recursive approach delegates repeated computation to functional self-calls, accumulating system stack frames with a space complexity of mathcal{O}(n) until the base case is satisfied.
+ 
+ CONCLUSION:
+ 
+ Ultimately, while recursion offers an elegant mathematical translation of the factorial definition, the iterative method is the superior implementation for practical applications in Python. The recursive pattern carries significant runtime overhead due to repeated function call stack frames—a memory footprint that makes it susceptible to stack overflow errors (RecursionError) when handling large input values. The iterative approach completely avoids call-stack allocation, executing with lower overhead, faster execution times, and zero risk of exceeding system stack limits. Therefore, iterative looping remains the industry-standard choice

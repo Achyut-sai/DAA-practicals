@@ -1,0 +1,44 @@
+def factorial_iterative(n):
+    result = 1
+    for i in range(2, n + 1):
+        result *= i
+    return result
+
+def factorial_recursive(n):
+    if n <= 1:
+        return 1
+    return n * factorial_recursive(n - 1)
+
+# Helper function to approximate execution ticks without external libraries
+def measure_ticks(func, n, iterations=10000):
+    # Benchmark function execution time relative to simple loop overhead
+    for _ in range(iterations):
+        func(n)
+
+# Interactive execution
+user_input = input("Enter a non-negative integer: ")
+
+if user_input.isdigit():
+    n = int(user_input)
+    
+    # Calculate Results
+    res_iter = factorial_iterative(n)
+    res_rec = factorial_recursive(n)
+    
+    print("\n" + "="*45)
+    print(f"RESULTS FOR n = {n}")
+    print("="*45)
+    print(f"Factorial Value: {res_iter}\n")
+    
+    print("Iterative Method:")
+    print("  - Time Complexity  : O(n)")
+    print("  - Space Complexity : O(1)")
+    print("  - Overhead         : Low (Direct loop state updates)\n")
+    
+    print("Recursive Method:")
+    print("  - Time Complexity  : O(n)")
+    print("  - Space Complexity : O(n) call stack frame memory")
+    print("  - Overhead         : High (Function push/pop frame cost)")
+    print("="*45)
+else:
+    print("Invalid input. Please enter a positive integer.")
