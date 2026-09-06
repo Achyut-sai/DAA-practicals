@@ -1,0 +1,65 @@
+def matrix_chain_order(p):
+    n = len(p) - 1
+    
+    # Initialize DP table m and split table s with zeroes (size: (n+1) x (n+1))
+    m = [[0 for _ in range(n + 1)] for _ in range(n + 1)]
+    s = [[0 for _ in range(n + 1)] for _ in range(n + 1)]
+
+    # L is the chain length (from length 2 up to n)
+    for L in range(2, n + 1):
+        for i in range(1, n - L + 2):
+            j = i + L - 1
+            # Represent infinity manually without importing math/float
+            m[i][j] = 10**18 
+            
+            for k in range(i, j):
+                # Recurrence formula
+                cost = m[i][k] + m[k + 1][j] + (p[i - 1] * p[k] * p[j])
+                
+                if cost < m[i][j]:
+                    m[i][j] = cost
+                    s[i][j] = k
+
+    return m, s
+
+
+def print_optimal_parentheses(s, i, j):
+    if i == j:
+        print("A" + str(i), end="")
+    else:
+        print("(", end="")
+        print_optimal_parentheses(s, i, s[i][j])
+        print_optimal_parentheses(s, s[i][j] + 1, j)
+        print(")", end="")
+
+
+# --- Main Execution without Libraries ---
+
+# Manual string parsing for user input without splitting via regex/libraries
+raw_input = input("Enter dimension sequence (e.g. 10 30 5 60): ")
+
+# Convert space-separated input string into list of integers manually
+p = []
+current_num = ""
+for char in raw_input + " ":
+    if char != " ":
+        current_num += char
+    else:
+        if current_num != "":
+            p.append(int(current_num))
+            current_num = ""
+
+n = len(p) - 1
+
+if n < 1:
+    print("Please enter at least 2 dimensions.")
+else:
+    # Run algorithm
+    m, s = matrix_chain_order(p)
+
+    # Display Results
+    print("\n--- Results ---")
+    print("Minimum Multiplication Cost:", m[1][n])
+    print("Optimal Parenthesization: ", end="")
+    print_optimal_parentheses(s, 1, n)
+    print()
