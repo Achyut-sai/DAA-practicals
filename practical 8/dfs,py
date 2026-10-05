@@ -1,0 +1,63 @@
+# Practical 8(b): Depth First Search (DFS)
+
+# Graph as adjacency list
+graph = {
+    'A': ['B', 'C'],
+    'B': ['A', 'D', 'E'],
+    'C': ['A', 'F'],
+    'D': ['B'],
+    'E': ['B', 'F'],
+    'F': ['C', 'E']
+}
+
+
+def dfs_recursive(graph, node, visited):
+    visited.append(node)
+    for neighbour in graph[node]:
+        if neighbour not in visited:
+            dfs_recursive(graph, neighbour, visited)
+    return visited
+
+
+def dfs_iterative(graph, start):
+    visited = []
+    stack = [start]            # LIFO stack
+    while stack:
+        node = stack.pop()
+        if node not in visited:
+            visited.append(node)
+            # push in reverse so the first neighbour is processed first
+            for neighbour in reversed(graph[node]):
+                if neighbour not in visited:
+                    stack.append(neighbour)
+    return visited
+
+
+print("=" * 50)
+print("         DEPTH FIRST SEARCH (DFS)")
+print("=" * 50)
+print("""
+Graph:
+          A
+         / \\
+        B   C
+       / \\   \\
+      D   E---F
+""")
+
+print("Adjacency List:")
+for vertex in graph:
+    print(f"  {vertex} -> {graph[vertex]}")
+
+start = 'A'
+print(f"\nStarting vertex : {start}")
+print(f"DFS (Recursive) : {' -> '.join(dfs_recursive(graph, start, []))}")
+print(f"DFS (Iterative) : {' -> '.join(dfs_iterative(graph, start))}")
+
+V = len(graph)
+E = sum(len(v) for v in graph.values()) // 2
+print("\n" + "-" * 50)
+print(f"Vertices (V) = {V}, Edges (E) = {E}")
+print("Time Complexity  : O(V + E)")
+print("Space Complexity : O(V)  (recursion stack / explicit stack)")
+print("-" * 50)
